@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+:root {
+  --background-blue: #1b3c53;
+  --dark-blue: #234c6a;
+  --dark-blue-hover: #296088;
+  --blue: #456882;
+  --blue-hover: #5483a7;
+  --light-blue: #6690af;
+  --light-blue-hover: #8fb4cf;
+  --green: #7ed957;
+  --yellow: #ffde59;
+  --red: #db1414;
+  --light-text-color: #faf1e7;
+}
+
+main {
+  padding-bottom: 20px;
+}
+
+body {
+  height: 100vh;
+}
+
+header {
+  background-color: var(--dark-blue);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: var(--light-text-color);
+  font-size: clamp(20px, 2vw, 25px);
+  max-width: 100px;
+}
+
+header nav a {
+  display: none;
+}
+
+header nav i {
+  color: var(--light-blue);
+  font-size: clamp(25px, 3vw, 30px);
+}
+
+header nav i:hover {
+  color: var(--light-blue-hover);
+}
+
+main {
+  background-color: var(--background-blue);
+  color: var(--light-text-color);
+}
+
+.titulo {
+  padding: 10px;
+  text-align: center;
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 800;
+}
+
+.grid-1 {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.grid-1-cards {
+  background-color: var(--blue);
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.titulo-card-1 {
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.numero-card-1 {
+  text-align: center;
+  font-size: 40px;
+}
+
+.licoes-container {
+  margin: 15px;
+  margin-bottom: 15px;
+  background-color: var(--blue);
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.titulo-licoes {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.licao-container {
+  padding: 12px;
+  border-radius: 15px;
+  background-color: var(--dark-blue);
+  max-width: 500px;
+}
+
+.nome-materia {
+  text-align: center;
+  font-size: clamp(25px, 2vw, 30px);
+  margin-bottom: 5px;
+}
+
+.licao-info {
+  font-size: clamp(12px, 2vw, 15px);
+}
+
+.dias-restantes {
+  color: var(--green);
+}
+
+.prioridade {
+  color: var(--red);
+}
+
+.licoes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.edicao-licao {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edicao-licao {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: clamp(15px, 2vw, 20px);
+  background-color: var(--blue);
+  color: var(--light-text-color);
+}
+
+.btn-edicao-licao:active {
+  background-color: var(--blue-hover);
+}
+
+@media screen and (min-width: 768px) {
+  .fa-bars {
+    display: none !important;
+  }
+
+  header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  header h1 {
+    max-width: none;
+    font-size: clamp(30px, 4vw, 40px);
+  }
+
+  header nav {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+  }
+
+  header nav i {
+    display: none;
+  }
+
+  header nav a {
+    display: block;
+    background-color: var(--blue);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: var(--light-text-color);
+    text-decoration: none;
+  }
+
+  .grid-1 {
+    padding: 0;
+    padding-bottom: 25px;
+    max-width: 75%;
+    margin: 0 auto;
+  }
+
+  .licoes-container {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+
+  .licoes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: start;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .licao-container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .grid-1 {
+    flex-direction: row;
+  }
+
+  .grid-1-cards {
+    max-width: 33.33%;
+  }
+
+  .licoes-grid {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .licao-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .licao-info h2 {
+    font-size: 20px;
+  }
+
+  main {
+    height: 91vh;
+  }
+}
