@@ -224,6 +224,24 @@ main {
   background-color: var(--dark-blue-hover);
 }
 
+.add-licao-container {
+  padding: 15px;
+  background-color: var(--blue);
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-materia {
+  padding: 5px;
+  border: 1px solid var(--dark-blue);
+}
+
+.input-materia:active {
+  padding: 10px;
+}
+
 @media screen and (min-width: 768px) {
   .fa-bars {
     display: none !important;

@@ -22,7 +22,20 @@ const atividades = [
   },
 ]
 
+const materias = ['Direito Digital', 'Desenvolvimento Web', 'CyberSecurity']
+
+const listaMaterias = document.getElementById('lista-materias')
 const licoesGrid = document.querySelector('.licoes-grid')
+
+function renderizarListaMaterias() {
+  materias.forEach((materia) => {
+    listaMaterias.innerHTML += `
+      <option value="${materia}">
+    `
+  })
+}
+
+renderizarListaMaterias()
 
 function renderizarAtividades() {
   licoesGrid.innerHTML = ''
