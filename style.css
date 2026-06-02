@@ -63,7 +63,7 @@ header nav i:hover {
 main {
   background-color: var(--background-blue);
   color: var(--light-text-color);
-  height: 91vh;
+  min-height: 100vh;
 }
 
 .hover-blue:hover {
@@ -132,6 +132,10 @@ main {
   margin-bottom: 5px;
 }
 
+.descricao {
+  margin-top: 5px;
+}
+
 .licao-container {
   padding: 12px;
   border-radius: 15px;
@@ -141,7 +145,7 @@ main {
 
 .nome-materia {
   text-align: center;
-  font-size: clamp(25px, 2vw, 30px);
+  font-size: clamp(15px, 3vw, 25px);
   margin-bottom: 5px;
 }
 
@@ -158,6 +162,13 @@ main {
 }
 
 .licoes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.licoes-grid-materia {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -281,8 +292,21 @@ main {
     margin: 0 auto;
   }
 
+  .licoes-grid-materia {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: start;
+    width: 100%;
+    margin: 0 auto;
+  }
+
   .licao-container {
     width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .opc-licoes-materia {
@@ -292,10 +316,6 @@ main {
 
   .btn-adicionar-materia {
     margin: 0;
-  }
-
-  main {
-    height: 100vh;
   }
 }
 
@@ -308,21 +328,22 @@ main {
     max-width: 33.33%;
   }
 
-  .licoes-grid {
-    display: flex;
-    flex-direction: row;
-  }
-
   .licao-container {
-    width: 300px;
     height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .licao-info h2 {
     font-size: 20px;
   }
 
-  main {
-    height: 91vh;
+  .licoes-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .licoes-grid-materia {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
