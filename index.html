@@ -9,14 +9,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header>
       <h1>Painel de Estudos</h1>
       <nav>
-        <a href="index.html">Dashboard</a>
-        <a href="materias.html">Matérias</a>
-        <a href="">Sair</a>
+        <a href="index.html" id="header-ativo">Dashboard</a>
+        <a href="materias.html" class="hover-blue">Matérias</a>
+        <a href="" class="hover-blue">Sair</a>
         <i class="fa-solid fa-bars none"></i>
       </nav>
     </header>
@@ -25,15 +26,15 @@
       <div class="grid-1">
         <div class="grid-1-cards" id="grid-1-materias">
           <h1 class="titulo-card-1">Matérias</h1>
-          <p class="numero-card-1"><strong>8</strong></p>
+          <p class="numero-card-1"><strong>0</strong></p>
         </div>
         <div class="grid-1-cards" id="grid-1-concluidas">
           <h1 class="titulo-card-1">Lições Feitas</h1>
-          <p class="numero-card-1"><strong>1</strong></p>
+          <p class="numero-card-1"><strong>0</strong></p>
         </div>
         <div class="grid-1-cards" id="grid-1-pendente">
           <h1 class="titulo-card-1">Lições Pendentes</h1>
-          <p class="numero-card-1"><strong>9</strong></p>
+          <p class="numero-card-1"><strong>1</strong></p>
         </div>
       </div>
       <!--Seção das lições-->
@@ -52,43 +53,9 @@
             </div>
             <div class="porcentagem-licao"></div>
             <nav class="edicao-licao">
-              <button class="btn-edicao-licao">Editar</button>
-              <button class="btn-edicao-licao">Concluir</button>
-              <button class="btn-edicao-licao">Exluir</button>
-            </nav>
-          </div>
-          <div class="licao-container">
-            <h1 class="nome-materia">Matéria</h1>
-            <div class="licao-info">
-              <h2 class="entrega">Entrega : 18/06</h2>
-              <h2 class="dias-restantes">Faltam <strong>10</strong> Dias!</h2>
-              <h2 class="prioridade">Prioridade : <strong>Alta</strong></h2>
-              <h2 class="status-licao">
-                Status : <strong>Não iniciada</strong>
-              </h2>
-            </div>
-            <div class="porcentagem-licao"></div>
-            <nav class="edicao-licao">
-              <button class="btn-edicao-licao">Editar</button>
-              <button class="btn-edicao-licao">Concluir</button>
-              <button class="btn-edicao-licao">Exluir</button>
-            </nav>
-          </div>
-          <div class="licao-container">
-            <h1 class="nome-materia">Matéria</h1>
-            <div class="licao-info">
-              <h2 class="entrega">Entrega : 18/06</h2>
-              <h2 class="dias-restantes">Faltam <strong>10</strong> Dias!</h2>
-              <h2 class="prioridade">Prioridade : <strong>Alta</strong></h2>
-              <h2 class="status-licao">
-                Status : <strong>Não iniciada</strong>
-              </h2>
-            </div>
-            <div class="porcentagem-licao"></div>
-            <nav class="edicao-licao">
-              <button class="btn-edicao-licao">Editar</button>
-              <button class="btn-edicao-licao">Concluir</button>
-              <button class="btn-edicao-licao">Exluir</button>
+              <button class="btn-edicao-licao hover-blue">Editar</button>
+              <button class="btn-edicao-licao hover-blue">Concluir</button>
+              <button class="btn-edicao-licao hover-blue">Exluir</button>
             </nav>
           </div>
         </div>
