@@ -230,7 +230,8 @@ main {
   background-color: var(--transparent-ligth);
   border: 1px solid var(--transparent-border);
   backdrop-filter: blur(16px);
-  max-width: 400px;
+  width: 400px;
+  margin: 0 auto;
 }
 
 .licao-container:hover {
