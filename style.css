@@ -24,6 +24,18 @@ html {
   --light-text-color: #faf1e7;
 }
 
+main > section {
+  display: none;
+}
+
+main > section.pagina-ativa {
+  display: block;
+}
+
+.nav-link.ativo {
+  background-color: var(--blue-hover) !important;
+}
+
 main {
   padding-bottom: 20px;
 }
