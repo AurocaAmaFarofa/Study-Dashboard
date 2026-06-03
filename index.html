@@ -12,6 +12,11 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="fundo-liquid-glass">
+      <div class="bola bola-1"></div>
+      <div class="bola bola-2"></div>
+      <div class="bola bola-3"></div>
+    </div>
     <header>
       <h1>Painel de Estudos</h1>
       <nav>
@@ -88,7 +93,12 @@
           <datalist id="lista-materias"></datalist>
 
           <label for="data-entrega"><h3>Data de Entrega</h3></label>
-          <input type="date" id="data-entrega" name="data-de-entrega" />
+          <input
+            type="date"
+            id="data-entrega"
+            name="data-de-entrega"
+            class="input-materia"
+          />
 
           <label for="prioridade"><h3>Prioridade</h3></label>
           <input

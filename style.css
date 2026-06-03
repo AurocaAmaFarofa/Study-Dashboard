@@ -22,6 +22,71 @@ html {
   --yellow: #ffde59;
   --red: #db1414;
   --light-text-color: #faf1e7;
+  --transparent: #ffffff13;
+  --transparent-hover: #ffffff1e;
+  --transparent-ligth: #ffffff1e;
+  --transparent-ligth-hover: #ffffff2c;
+  --transparent-border: #ffffff44;
+}
+
+.fundo-liquid-glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f172a;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bola {
+  position: absolute;
+  background-image: linear-gradient(
+    180deg,
+    var(--background-blue),
+    var(--blue)
+  );
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: moveLiquid 20s infinite alternate ease-in-out;
+}
+
+.bola-1 {
+  color: var(--dark-blue);
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  left: -10%;
+}
+
+.bola-2 {
+  width: 600px;
+  height: 600px;
+  bottom: -20%;
+  right: -10%;
+  animation-duration: 25s;
+}
+
+.bola-3 {
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  left: 50%;
+  animation-duration: 18s;
+}
+
+@keyframes moveLiquid {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(100px, -80px) scale(1.2);
+  }
+  100% {
+    transform: translate(-50px, 50px) scale(0.8);
+  }
 }
 
 main > section {
@@ -33,7 +98,8 @@ main > section.pagina-ativa {
 }
 
 .nav-link.ativo {
-  background-color: var(--blue-hover) !important;
+  background-color: var(--transparent-hover) !important;
+  border: 1px solid var(--transparent-border);
 }
 
 main {
@@ -45,11 +111,14 @@ body {
 }
 
 header {
-  background-color: var(--dark-blue);
+  background-color: var(--transparent);
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--transparent-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(16px);
 }
 
 header h1 {
@@ -63,24 +132,22 @@ header nav a {
   transition: all 0.2s;
 }
 
+header nav a:hover {
+  background-color: var(--transparent-ligth-hover);
+}
+
 header nav i {
-  color: var(--light-blue);
+  color: var(--transparent-ligth);
   font-size: clamp(25px, 3vw, 30px);
 }
 
 header nav i:hover {
-  color: var(--light-blue-hover);
+  color: var(--transparent-ligth-hover);
 }
 
 main {
-  background-color: var(--background-blue);
   color: var(--light-text-color);
   min-height: 100vh;
-}
-
-.hover-blue:hover {
-  transition: all 0.2s;
-  background-color: var(--blue-hover);
 }
 
 .titulo {
@@ -103,11 +170,18 @@ main {
 }
 
 .grid-1-cards {
-  background-color: var(--blue);
+  background-color: var(--transparent-ligth);
   width: 100%;
   height: 100px;
   padding: 10px;
   border-radius: 20px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid var(--transparent-border);
+}
+
+.grid-1-cards:hover {
+  background-color: var(--transparent-ligth-hover);
 }
 
 .titulo-card-1 {
@@ -133,7 +207,9 @@ main {
 .licoes-container {
   margin: 15px;
   margin-bottom: 15px;
-  background-color: var(--blue);
+  background-color: var(--transparent);
+  border: 1px solid var(--transparent-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   border-radius: 20px;
   padding: 15px;
 }
@@ -151,8 +227,14 @@ main {
 .licao-container {
   padding: 12px;
   border-radius: 15px;
-  background-color: var(--dark-blue);
-  max-width: 500px;
+  background-color: var(--transparent-ligth);
+  border: 1px solid var(--transparent-border);
+  backdrop-filter: blur(16px);
+  max-width: 400px;
+}
+
+.licao-container:hover {
+  background-color: var(--transparent-ligth-hover);
 }
 
 .nome-materia {
@@ -194,11 +276,12 @@ main {
 }
 
 .btn-edicao-licao {
-  border: none;
+  border: 1px solid var(--transparent-border);
   padding: 8px;
   border-radius: 20px;
   font-size: clamp(15px, 2vw, 20px);
-  background-color: var(--blue);
+  background-color: var(--transparent);
+  backdrop-filter: blur(16px);
   color: var(--light-text-color);
 }
 
@@ -206,12 +289,9 @@ main {
   justify-content: center;
 }
 
-.btn-edicao-licao:active {
-  background-color: var(--blue-hover);
-}
-
 .btn-edicao-licao:hover {
   cursor: pointer;
+  background-color: var(--transparent-hover);
 }
 
 .opc-licoes-materia {
@@ -225,7 +305,8 @@ main {
   padding: 8px;
   border: none;
   font-size: clamp(15px, 2vw, 20px);
-  background-color: var(--dark-blue);
+  background-color: var(--transparent-ligth);
+  border: 1px solid var(--transparent-border);
   max-width: 50%;
   align-self: center;
   margin-bottom: 5px;
@@ -233,12 +314,15 @@ main {
 
 .btn-adicionar-materia:hover {
   cursor: pointer;
-  background-color: var(--dark-blue-hover);
+  background-color: var(--transparent-ligth-hover);
 }
 
 .add-licao-container {
   padding: 15px;
-  background-color: var(--blue);
+  background-color: var(--transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--transparent-border);
+  border-radius: 20px;
   margin: 12px;
   display: flex;
   flex-direction: column;
@@ -247,11 +331,45 @@ main {
 
 .input-materia {
   padding: 5px;
-  border: 1px solid var(--dark-blue);
+  background-color: var(--transparent-ligth);
+  border: 1px solid var(--transparent-border);
+  border-radius: 8px;
+  outline: none;
+  backdrop-filter: blur(4px);
+  color: var(--light-text-color);
 }
 
-.input-materia:active {
+.input-materia::placeholder {
+  color: var(--transparent-border);
+}
+
+.input-materia:focus {
+  background-color: var(--transparent-border);
   padding: 10px;
+}
+
+.input-materia[type="date"]::placeholder {
+  color: var(--transparent-border);
+}
+
+.input-materia[type="date"]::-webkit-datetime-edit-text,
+.input-materia[type="date"]::-webkit-datetime-edit-month-field,
+.input-materia[type="date"]::-webkit-datetime-edit-day-field,
+.input-materia[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--light-text-color);
+  font-style: italic;
+}
+
+.input-materia[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: transparent;
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.input-materia[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 @media screen and (min-width: 768px) {
@@ -281,12 +399,13 @@ main {
   }
 
   header nav a {
-    display: block;
-    background-color: var(--blue);
+    display: flex;
+    background-color: var(--transparent);
     padding: 10px 20px;
     border-radius: 20px;
     color: var(--light-text-color);
     text-decoration: none;
+    align-items: center;
   }
 
   .grid-1 {
@@ -347,6 +466,11 @@ main {
   .btn-adicionar-materia {
     margin: 0;
   }
+
+  .add-licao-container {
+    max-width: 75%;
+    margin: 12px auto;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -375,5 +499,9 @@ main {
 
   .licoes-grid-materia {
     grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .add-licao-container {
+    max-width: 30%;
   }
 }
