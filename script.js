@@ -66,9 +66,9 @@ function renderizarAtividades() {
         </div>
         <div class="porcentagem-licao"></div>
         <nav class="edicao-licao">
-        <button class="btn-edicao-licao hover-blue">Editar</button>
-        <button class="btn-edicao-licao hover-blue">Concluir</button>
-        <button class="btn-edicao-licao hover-blue" onclick="excluirLicao(${indice})">Exluir</button>
+        <button class="btn-edicao-licao">Editar</button>
+        <button class="btn-edicao-licao">Concluir</button>
+        <button class="btn-edicao-licao" onclick="excluirLicao(${indice})">Exluir</button>
         </nav>
       </div>
     `; //innerHTML cria dentro da div que a gente puxou por const tatata = document.blabla

@@ -312,8 +312,10 @@ main {
   background-color: var(--transparent-ligth);
   border: 1px solid var(--transparent-border);
   backdrop-filter: blur(16px);
-  width: 400px;
+  width: 100%;
+  max-width: 250px;
   margin: 0 auto;
+  margin-top: 10px;
 }
 
 .licao-container:hover {
@@ -362,7 +364,7 @@ main {
   border: 1px solid var(--transparent-border);
   padding: 8px;
   border-radius: 20px;
-  font-size: clamp(15px, 2vw, 20px);
+  font-size: clamp(10px, 4vw, 17px);
   background-color: var(--transparent);
   backdrop-filter: blur(16px);
   color: var(--light-text-color);
@@ -556,6 +558,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-width: none;
   }
 
   .opc-licoes-materia {
