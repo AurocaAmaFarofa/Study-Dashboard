@@ -46,6 +46,34 @@ html {
   backdrop-filter: blur(16px);
   min-height: 200px;
   max-width: 400px;
+  animation: surgimentoPopup 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    forwards;
+}
+
+@keyframes surgimentoPopup {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes desaparecimentoPopup {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+.saida {
+  animation: desaparecimentoPopup 0.25s ease-in forwards !important;
 }
 
 .escondido {
@@ -59,7 +87,6 @@ html {
 #popup-materia h2,
 h4 {
   font-size: 1.5rem;
-  margin-bottom: 5px;
   width: 100%;
   text-align: start;
   color: var(--light-text-color);

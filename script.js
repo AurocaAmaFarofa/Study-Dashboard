@@ -136,9 +136,14 @@ function excluirMateria() {}
 const divPopup = document.getElementById("popup-materia");
 
 function mostrarPopup() {
+  divPopup.classList.remove("saida");
   divPopup.classList.remove("escondido");
 }
 
 function sumirPopup() {
-  divPopup.classList.add("escondido");
+  divPopup.classList.add("saida");
+  setTimeout(function () {
+    divPopup.classList.add("escondido");
+    divPopup.classList.remove("saida");
+  }, 250);
 }
