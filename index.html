@@ -17,6 +17,24 @@
       <div class="bola bola-2"></div>
       <div class="bola bola-3"></div>
     </div>
+    <div id="popup-materia" class="escondido">
+      <h2>Adicionar Matéria</h2>
+      <div>
+        <label for="popup-texto-materia"><h4>Nome da Matéria</h4></label>
+        <input
+          type="text"
+          id="popup-texto-materia"
+          placeholder="Calculo II..."
+          class="input-materia input-popup"
+        />
+      </div>
+      <div class="btns-popup">
+        <button class="btn-adicionar-materia" onclick="sumirPopup()">
+          Cancelar
+        </button>
+        <button class="btn-adicionar-materia">Criar</button>
+      </div>
+    </div>
     <header>
       <h1>Painel de Estudos</h1>
       <nav>
@@ -41,7 +59,7 @@
           data-pagina="materias"
           >Matérias</a
         >
-        <a href="" class="hover-blue">Sair</a>
+        <a href="">Adicionar Materia</a>
         <i class="fa-solid fa-bars none"></i>
       </nav>
     </header>
@@ -69,12 +87,20 @@
         <section class="licoes-container">
           <div class="opc-licoes-materia">
             <h1 class="titulo-licoes">Lições</h1>
-            <button
-              class="btn-adicionar-materia"
-              onclick="mostrarPagina('licoes')"
-            >
-              Nova Lição
-            </button>
+            <div class="btns-popup opc-licoes-btns">
+              <button
+                class="btn-adicionar-materia btn-metade"
+                onclick="mostrarPagina('licoes')"
+              >
+                Nova Lição
+              </button>
+              <button
+                class="btn-adicionar-materia btn-metade"
+                onclick="mostrarPopup()"
+              >
+                Nova Materia
+              </button>
+            </div>
           </div>
           <div class="licoes-grid"></div>
         </section>
@@ -172,6 +198,7 @@
           </section>
         </div>
       </section>
+      <section id="add-materias"></section>
     </main>
   </body>
 </html>

@@ -29,6 +29,61 @@ html {
   --transparent-border: #ffffff44;
 }
 
+#popup-materia {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1000;
+  padding: 22px;
+  background-color: var(--transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  border: 1px solid var(--transparent-border);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  min-height: 200px;
+  max-width: 400px;
+}
+
+.escondido {
+  display: none !important;
+}
+
+.btn-metade {
+  width: 50%;
+}
+
+#popup-materia h2,
+h4 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  width: 100%;
+  text-align: start;
+  color: var(--light-text-color);
+}
+
+#popup-materia h4 {
+  font-size: 1rem;
+}
+
+.input-popup {
+  width: 100%;
+}
+
+.btns-popup {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.btns-popup button {
+  width: 50%;
+  padding: 5px;
+}
+
 .fundo-liquid-glass {
   position: fixed;
   top: 0;
@@ -300,6 +355,10 @@ main {
   flex-direction: column;
 }
 
+.opc-licoes-materia div button {
+  max-width: 150px;
+}
+
 .btn-adicionar-materia {
   border-radius: 20px;
   color: var(--light-text-color);
@@ -374,6 +433,19 @@ main {
 }
 
 @media screen and (min-width: 768px) {
+  .opc-licoes-materia h1 {
+    width: 50%;
+  }
+
+  .opc-licoes-materia div {
+    width: 50%;
+  }
+
+  .opc-licoes-btns {
+    justify-content: end;
+    gap: 10px;
+  }
+
   .fa-bars {
     display: none !important;
   }

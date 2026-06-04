@@ -132,3 +132,13 @@ function excluirLicao(indice) {
 }
 
 function excluirMateria() {}
+
+const divPopup = document.getElementById("popup-materia");
+
+function mostrarPopup() {
+  divPopup.classList.remove("escondido");
+}
+
+function sumirPopup() {
+  divPopup.classList.add("escondido");
+}
