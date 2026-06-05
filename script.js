@@ -27,6 +27,8 @@ const licoesGrid = document.querySelector('.licoes-grid')
 
 const visor = document.getElementById('licoes-pendentes')
 
+//------------------------------------------------------------------------------------------//
+
 // função para atualizar o numero de lições pendentes
 function atualizarVisor() {
   const atividades = localStorage.getItem('atividades') //puxa do localStorage
@@ -67,7 +69,7 @@ function renderizarAtividades() {
         <div class="porcentagem-licao"></div>
         <nav class="edicao-licao">
         <button class="btn-edicao-licao">Editar</button>
-        <button class="btn-edicao-licao">Concluir</button>
+        <button class="btn-edicao-licao" onclick="concluirLicao(${indice})">Concluir</button>
         <button class="btn-edicao-licao" onclick="excluirLicao(${indice})">Exluir</button>
         </nav>
       </div>
@@ -147,3 +149,52 @@ function sumirPopup() {
     divPopup.classList.remove('saida')
   }, 250)
 }
+
+//------------------------------------------------------------------------------------------//
+
+const visorFeitas = document.getElementById('licoes-feitas')
+const concluidasGrid = document.getElementById('grid-1-concluidas')
+const btnFinalizarLicao = document.getElementById('btn-concluir-licao')
+let atividadesFeitas =
+  JSON.parse(localStorage.getItem('aitividadesFeitas')) || []
+
+console.log(atividadesFeitas)
+
+function concluirLicao(indice) {
+  let atividades = JSON.parse(localStorage.getItem('atividades')) || []
+  let atividadesFeitas =
+    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
+  const [atividadeConcluida] = atividades.splice(indice, 1)
+
+  if (atividadeConcluida) {
+    atividadeConcluida.status = 'Concluído'
+    atividadesFeitas.push(atividadeConcluida)
+  }
+
+  localStorage.setItem('atividades', JSON.stringify(atividades))
+  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
+
+  renderizarAtividades()
+  atualizarVisorMateria()
+}
+
+function atualizarVisorMateria() {
+  const atividadesFeitas = localStorage.getItem('atividadesFeitas')
+  const listaAtividadesFetas = JSON.parse(atividadesFeitas) || []
+  const quantidadeAtividadesFeitas = listaAtividadesFetas.length
+  visorFeitas.innerText = quantidadeAtividadesFeitas
+}
+
+atualizarVisorMateria()
+
+//---------------------------Função temporaria, apagar depois------------------------------------//
+
+concluidasGrid.addEventListener('click', resetarAtividadesFeitas)
+
+function resetarAtividadesFeitas() {
+  atividadesFeitas = []
+  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
+  atualizarVisorMateria()
+}
+
+//------------------------------------------------------------------------------------------//
