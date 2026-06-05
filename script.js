@@ -1,58 +1,58 @@
 function mostrarPagina(idPagina) {
-  document.querySelectorAll("main > section").forEach((secao) => {
-    secao.classList.remove("pagina-ativa");
-  });
+  document.querySelectorAll('main > section').forEach((secao) => {
+    secao.classList.remove('pagina-ativa')
+  })
 
-  const paginaAtiva = document.getElementById(idPagina);
-  if (paginaAtiva) paginaAtiva.classList.add("pagina-ativa");
+  const paginaAtiva = document.getElementById(idPagina)
+  if (paginaAtiva) paginaAtiva.classList.add('pagina-ativa')
 
-  document.querySelectorAll(".nav-link").forEach((link) => {
-    link.classList.remove("ativo");
-  });
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    link.classList.remove('ativo')
+  })
 
   const linkAtivo = document.querySelector(
     `.nav-link[data-pagina="${idPagina}"]`,
-  );
-  if (linkAtivo) linkAtivo.classList.add("ativo");
+  )
+  if (linkAtivo) linkAtivo.classList.add('ativo')
 
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0)
 } //criado com a ajuda da IA para entender como funcionam SPA's na pratica
 
-const atividades = JSON.parse(localStorage.getItem("atividades")) || []; //const para puxar do localStorage as atividades e salvar
+const atividades = JSON.parse(localStorage.getItem('atividades')) || [] //const para puxar do localStorage as atividades e salvar
 
-const materias = ["Direito Digital", "Desenvolvimento Web", "CyberSecurity"];
+const materias = ['Direito Digital', 'Desenvolvimento Web', 'CyberSecurity']
 
-const listaMaterias = document.getElementById("lista-materias");
-const licoesGrid = document.querySelector(".licoes-grid");
+const listaMaterias = document.getElementById('lista-materias')
+const licoesGrid = document.querySelector('.licoes-grid')
 
-const visor = document.getElementById("licoes-pendentes");
+const visor = document.getElementById('licoes-pendentes')
 
 // função para atualizar o numero de lições pendentes
 function atualizarVisor() {
-  const atividades = localStorage.getItem("atividades"); //puxa do localStorage
-  const listaAtividades = JSON.parse(atividades); //transforma em array
-  const quantidadeAtividades = listaAtividades.length; //puxa tamanho do array
-  visor.innerText = quantidadeAtividades;
+  const atividades = localStorage.getItem('atividades') //puxa do localStorage
+  const listaAtividades = JSON.parse(atividades) || [] //transforma em array
+  const quantidadeAtividades = listaAtividades.length //puxa tamanho do array
+  visor.innerText = quantidadeAtividades
 }
 
-atualizarVisor();
+atualizarVisor()
 
 function renderizarListaMaterias() {
   materias.forEach((materia) => {
     listaMaterias.innerHTML += `
       <option value="${materia}">
-    `;
-  });
+    `
+  })
 }
 
 function renderizarAtividades() {
-  const atividades = JSON.parse(localStorage.getItem("atividades")) || [];
+  const atividades = JSON.parse(localStorage.getItem('atividades')) || []
 
-  licoesGrid.innerHTML = "";
+  licoesGrid.innerHTML = ''
 
   atividades.forEach((atividade, indice) => {
     //cria o indice pra dai saber qual atividade é qual
-    console.log(indice);
+    console.log(indice)
     licoesGrid.innerHTML += `
 
       <div class="licao-container">
@@ -71,79 +71,79 @@ function renderizarAtividades() {
         <button class="btn-edicao-licao" onclick="excluirLicao(${indice})">Exluir</button>
         </nav>
       </div>
-    `; //innerHTML cria dentro da div que a gente puxou por const tatata = document.blabla
-  });
+    ` //innerHTML cria dentro da div que a gente puxou por const tatata = document.blabla
+  })
 
-  atualizarVisor();
+  atualizarVisor()
 }
 
-const btnAdicionarLicao = document.getElementById("btn-adicionar-licao");
+const btnAdicionarLicao = document.getElementById('btn-adicionar-licao')
 
-btnAdicionarLicao.addEventListener("click", () => {
+btnAdicionarLicao.addEventListener('click', () => {
   const novaAtividade = {
-    materia: document.getElementById("materia").value,
-    entrega: document.getElementById("data-entrega").value,
-    prioridade: document.getElementById("prioridade").value,
-    status: document.getElementById("status").value,
-    descricao: document.getElementById("descricao").value,
-  };
-  console.log(novaAtividade);
+    materia: document.getElementById('materia').value,
+    entrega: document.getElementById('data-entrega').value,
+    prioridade: document.getElementById('prioridade').value,
+    status: document.getElementById('status').value,
+    descricao: document.getElementById('descricao').value,
+  }
+  console.log(novaAtividade)
 
-  let atividades = JSON.parse(localStorage.getItem("atividades")) || [];
+  let atividades = JSON.parse(localStorage.getItem('atividades')) || []
 
-  atividades.push(novaAtividade);
+  atividades.push(novaAtividade)
 
-  localStorage.setItem("atividades", JSON.stringify(atividades));
+  localStorage.setItem('atividades', JSON.stringify(atividades))
 
-  document.getElementById("materia").value = "";
-  document.getElementById("data-entrega").value = "";
-  document.getElementById("prioridade").value = "";
-  document.getElementById("status").value = "";
-  document.getElementById("descricao").value = "";
+  document.getElementById('materia').value = ''
+  document.getElementById('data-entrega').value = ''
+  document.getElementById('prioridade').value = ''
+  document.getElementById('status').value = ''
+  document.getElementById('descricao').value = ''
 
-  renderizarAtividades();
+  renderizarAtividades()
 
-  mostrarPagina("home");
+  mostrarPagina('home')
 
-  console.log(novaAtividade);
+  console.log(novaAtividade)
 
-  renderizarAtividades();
-});
+  renderizarAtividades()
+})
 
-document.addEventListener("DOMContentLoaded", () => {
-  mostrarPagina("home");
-});
+document.addEventListener('DOMContentLoaded', () => {
+  mostrarPagina('home')
+})
 
 if (licoesGrid) {
-  renderizarAtividades();
+  renderizarAtividades()
 }
 
 if (listaMaterias) {
-  renderizarListaMaterias();
+  renderizarListaMaterias()
 }
 
 function excluirLicao(indice) {
   //pega o indice quando cria a atividade e exclui por ele
-  let dadosLicoes = localStorage.getItem("atividades");
-  let listaLicoes = JSON.parse(dadosLicoes) || [];
-  listaLicoes.splice(indice, 1);
-  localStorage.setItem("atividades", JSON.stringify(listaLicoes));
-  renderizarAtividades();
+  let dadosLicoes = localStorage.getItem('atividades')
+  let listaLicoes = JSON.parse(dadosLicoes) || []
+  listaLicoes.splice(indice, 1)
+  localStorage.setItem('atividades', JSON.stringify(listaLicoes))
+  renderizarAtividades()
 }
 
 function excluirMateria() {}
 
-const divPopup = document.getElementById("popup-materia");
+const divPopup = document.getElementById('popup-materia')
 
 function mostrarPopup() {
-  divPopup.classList.remove("saida");
-  divPopup.classList.remove("escondido");
+  divPopup.classList.remove('saida')
+  divPopup.classList.remove('escondido')
 }
 
 function sumirPopup() {
-  divPopup.classList.add("saida");
+  divPopup.classList.add('saida')
   setTimeout(function () {
-    divPopup.classList.add("escondido");
-    divPopup.classList.remove("saida");
-  }, 250);
+    divPopup.classList.add('escondido')
+    divPopup.classList.remove('saida')
+  }, 250)
 }
