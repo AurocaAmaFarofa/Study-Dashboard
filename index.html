@@ -37,6 +37,70 @@
         </button>
       </div>
     </div>
+    <div id="popup-atividade-nova" class="escondido">
+      <h1 class="titulo">Adicionar Lição</h1>
+      <label for="materia"><h3>Materia</h3></label>
+      <input
+        list="lista-materias"
+        id="materia"
+        name="materia"
+        placeholder="Selecione a Materia..."
+        class="input-materia"
+      />
+      <datalist id="lista-materias"></datalist>
+
+      <label for="data-entrega"><h3>Data de Entrega</h3></label>
+      <input
+        type="date"
+        id="data-entrega"
+        name="data-de-entrega"
+        class="input-materia"
+      />
+
+      <label for="prioridade"><h3>Prioridade</h3></label>
+      <input
+        class="input-materia"
+        list="lista-prioridades"
+        id="prioridade"
+        name="prioridade"
+        placeholder="Selecione o Grau de Prioridade..."
+      />
+      <datalist id="lista-prioridades">
+        <option value="Baixa"></option>
+        <option value="Media"></option>
+        <option value="Alta"></option>
+      </datalist>
+
+      <label for="status"><h3>Status</h3></label>
+      <input
+        list="status-licao"
+        id="status"
+        name="status"
+        placeholder="Status da Lição..."
+        class="input-materia"
+      />
+      <datalist id="status-licao">
+        <option value="Não iniciada"></option>
+        <option value="Em andamento"></option>
+      </datalist>
+
+      <h3 id="descricao-input">Descrição</h3>
+      <input
+        id="descricao"
+        type="text"
+        placeholder="Descrição da Lição..."
+        class="input-materia"
+      />
+
+      <div class="btns-popup espaco">
+        <button id="btn-adicionar-licao" class="btn-adicionar-materia">
+          <h5>Adicionar</h5>
+        </button>
+        <button onclick="sumirPopupAtividade()" class="btn-adicionar-materia">
+          <h5>Fechar</h5>
+        </button>
+      </div>
+    </div>
     <header>
       <h1>Painel de Estudos</h1>
       <nav>
@@ -46,13 +110,6 @@
           class="nav-link"
           data-pagina="home"
           >Dashboard</a
-        >
-        <a
-          href="#"
-          onclick="mostrarPagina('licoes')"
-          class="nav-link"
-          data-pagina="licoes"
-          >Adicionar Lição</a
         >
         <a
           href="#"
@@ -91,7 +148,7 @@
             <div class="btns-popup opc-licoes-btns">
               <button
                 class="btn-adicionar-materia btn-metade"
-                onclick="mostrarPagina('licoes')"
+                onclick="mostrarPopupAtividade()"
               >
                 Nova Lição
               </button>
@@ -104,69 +161,6 @@
             </div>
           </div>
           <div class="licoes-grid"></div>
-        </section>
-      </section>
-
-      <!-- ===== SEÇÃO LIÇÕES  ===== -->
-      <section id="licoes">
-        <h1 class="titulo">Adicionar Lição</h1>
-        <section class="add-licao-container">
-          <label for="materia"><h3>Materia</h3></label>
-          <input
-            list="lista-materias"
-            id="materia"
-            name="materia"
-            placeholder="Selecione a Materia..."
-            class="input-materia"
-          />
-          <datalist id="lista-materias"></datalist>
-
-          <label for="data-entrega"><h3>Data de Entrega</h3></label>
-          <input
-            type="date"
-            id="data-entrega"
-            name="data-de-entrega"
-            class="input-materia"
-          />
-
-          <label for="prioridade"><h3>Prioridade</h3></label>
-          <input
-            class="input-materia"
-            list="lista-prioridades"
-            id="prioridade"
-            name="prioridade"
-            placeholder="Selecione o Grau de Prioridade..."
-          />
-          <datalist id="lista-prioridades">
-            <option value="Baixa"></option>
-            <option value="Media"></option>
-            <option value="Alta"></option>
-          </datalist>
-
-          <label for="status"><h3>Status</h3></label>
-          <input
-            list="status-licao"
-            id="status"
-            name="status"
-            placeholder="Status da Lição..."
-            class="input-materia"
-          />
-          <datalist id="status-licao">
-            <option value="Não iniciada"></option>
-            <option value="Em andamento"></option>
-          </datalist>
-
-          <h3>Descrição</h3>
-          <input
-            id="descricao"
-            type="text"
-            placeholder="Descrição da Lição..."
-            class="input-materia"
-          />
-
-          <button id="btn-adicionar-licao" class="btn-adicionar-materia">
-            <h5>Adicionar</h5>
-          </button>
         </section>
       </section>
 

@@ -1,4 +1,5 @@
 const divPopup = document.getElementById('popup-materia')
+const divPopupAtividade = document.getElementById('popup-atividade-nova')
 const visorFeitas = document.getElementById('licoes-feitas')
 
 function mostrarPagina(idPagina) {
@@ -189,6 +190,8 @@ btnAdicionarLicao.addEventListener('click', () => {
   console.log(novaAtividade)
 
   renderizarAtividades()
+
+  sumirPopupAtividade()
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -219,6 +222,19 @@ function sumirPopup() {
   setTimeout(function () {
     divPopup.classList.add('escondido')
     divPopup.classList.remove('saida')
+  }, 250)
+}
+
+function mostrarPopupAtividade() {
+  divPopupAtividade.classList.remove('saida')
+  divPopupAtividade.classList.remove('escondido')
+}
+
+function sumirPopupAtividade() {
+  divPopupAtividade.classList.add('saida')
+  setTimeout(function () {
+    divPopupAtividade.classList.add('escondido')
+    divPopupAtividade.classList.remove('saida')
   }, 250)
 }
 
