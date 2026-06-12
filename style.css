@@ -29,6 +29,18 @@ html {
   --transparent-border: #ffffff44;
 }
 
+.txt-prioridade-alta {
+  color: var(--red) !important;
+}
+
+.txt-prioridade-media {
+  color: var(--yellow) !important;
+}
+
+.txt-prioridade-baixa {
+  color: var(--green) !important;
+}
+
 #popup-materia {
   display: flex;
   flex-direction: column;

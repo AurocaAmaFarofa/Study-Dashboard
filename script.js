@@ -133,6 +133,19 @@ function renderizarAtividades() {
 
   atividades.forEach((atividade, indice) => {
     //cria o indice pra dai saber qual atividade é qual
+
+    let classePrioridade = ''
+
+    if (atividade.prioridade === 'Alta') {
+      classePrioridade = 'txt-prioridade-alta'
+    } else if (
+      atividade.prioridade === 'Média' ||
+      atividade.prioridade === 'Media'
+    ) {
+      classePrioridade = 'txt-prioridade-media'
+    } else {
+      classePrioridade = 'txt-prioridade-baixa'
+    }
     console.log(indice)
     licoesGrid.innerHTML += `
 
@@ -141,7 +154,7 @@ function renderizarAtividades() {
         <div class="licao-info">
         <h2 class="entrega">Entrega: ${atividade.entrega}</h2>
         <h2 class="dias-restantes">Faltam <strong>${atividade.dias} </strong>dias</h2>
-        <h2 class="prioridade">Prioridade: <strong>${atividade.prioridade}</strong></h2>
+        <h2 class="prioridade ${classePrioridade}">Prioridade: <strong class="${classePrioridade}">${atividade.prioridade}</strong></h2>
         <h2 class="status-licao">Status: <strong>${atividade.status}</strong></h2>
         <h2 class="descrição">${atividade.descricao}</h2>
         </div>
