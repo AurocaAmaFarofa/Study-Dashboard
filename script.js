@@ -40,19 +40,20 @@ btnAdicionarMateria.addEventListener('click', () => {
 
 function renderizarCardsMateria() {
   const materias = JSON.parse(localStorage.getItem('materias')) || []
-  const listaDeAtividades = JSON.parse(localStorage.getItem('atividades')) || []
+  const atividadesPendentes =
+    JSON.parse(localStorage.getItem('atividades')) || []
+  const atividadesConcluidas =
+    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
+
   const gridMaterias = document.getElementById('licoes-grid-mat')
   gridMaterias.innerHTML = ''
 
   materias.forEach((materia, indice) => {
-    const atividadesDaMateria = listaDeAtividades.filter(
+    const qtdPendentes = atividadesPendentes.filter(
       (ativ) => ativ.materia === materia,
-    )
-    const qtdPendentes = atividadesDaMateria.filter(
-      (ativ) => ativ.status === 'Pendente',
     ).length
-    const qtdFeitas = atividadesDaMateria.filter(
-      (ativ) => ativ.status === 'Concluído',
+    const qtdFeitas = atividadesConcluidas.filter(
+      (ativ) => ativ.materia === materia,
     ).length
 
     gridMaterias.innerHTML += `
@@ -232,12 +233,19 @@ console.log(atividadesFeitas)
 
 function concluirLicao(indice) {
   let atividades = JSON.parse(localStorage.getItem('atividades')) || []
-  if (atividades[indice]) {
-    atividades[indice].status = 'Concluído'
+  let atividadesFeitas =
+    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
+  const [atividadeConcluida] = atividades.splice(indice, 1)
+
+  if (atividadeConcluida) {
+    atividadeConcluida.status = 'Concluído'
+    atividadesFeitas.push(atividadeConcluida)
   }
   localStorage.setItem('atividades', JSON.stringify(atividades))
+  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
   renderizarAtividades()
   atualizarVisor()
+  atualizarVisorMateria()
   renderizarCardsMateria()
 }
 
