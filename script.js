@@ -1,3 +1,6 @@
+const divPopup = document.getElementById('popup-materia')
+const visorFeitas = document.getElementById('licoes-feitas')
+
 function mostrarPagina(idPagina) {
   document.querySelectorAll('main > section').forEach((secao) => {
     secao.classList.remove('pagina-ativa')
@@ -37,17 +40,27 @@ btnAdicionarMateria.addEventListener('click', () => {
 
 function renderizarCardsMateria() {
   const materias = JSON.parse(localStorage.getItem('materias')) || []
+  const listaDeAtividades = JSON.parse(localStorage.getItem('atividades')) || []
   const gridMaterias = document.getElementById('licoes-grid-mat')
-
   gridMaterias.innerHTML = ''
 
   materias.forEach((materia, indice) => {
+    const atividadesDaMateria = listaDeAtividades.filter(
+      (ativ) => ativ.materia === materia,
+    )
+    const qtdPendentes = atividadesDaMateria.filter(
+      (ativ) => ativ.status === 'Pendente',
+    ).length
+    const qtdFeitas = atividadesDaMateria.filter(
+      (ativ) => ativ.status === 'Concluído',
+    ).length
+
     gridMaterias.innerHTML += `
       <div class="licao-container">
-        <h1 class="nome-materia pagina">Matéria</h1>
+        <h1 class="nome-materia pagina">${materia}</h1>
         <div class="licao-info">
-          <h2 class="entrega">Atividades Concluidas : 0</h2>
-          <h2 class="status-licao">Atividades Pendentes : 0</h2>
+          <h2 class="entrega">Atividades Concluidas : ${qtdFeitas}</h2>
+          <h2 class="status-licao">Atividades Pendentes : ${qtdPendentes}</h2>
         </div>
         <div class="porcentagem-licao"></div>
         <nav class="edicao-licao btn-edicao-materia">
@@ -141,6 +154,7 @@ function renderizarAtividades() {
   })
 
   atualizarVisor()
+  atualizarVisorMateria()
 }
 
 const btnAdicionarLicao = document.getElementById('btn-adicionar-licao')
@@ -191,9 +205,8 @@ function excluirLicao(indice) {
   listaLicoes.splice(indice, 1)
   localStorage.setItem('atividades', JSON.stringify(listaLicoes))
   renderizarAtividades()
+  renderizarCardsMateria()
 }
-
-const divPopup = document.getElementById('popup-materia')
 
 function mostrarPopup() {
   divPopup.classList.remove('saida')
@@ -210,30 +223,22 @@ function sumirPopup() {
 
 //------------------------------------------------------------------------------------------//
 
-const visorFeitas = document.getElementById('licoes-feitas')
 const concluidasGrid = document.getElementById('grid-1-concluidas')
 const btnFinalizarLicao = document.getElementById('btn-concluir-licao')
 let atividadesFeitas =
-  JSON.parse(localStorage.getItem('aitividadesFeitas')) || []
+  JSON.parse(localStorage.getItem('atividadesFeitas')) || []
 
 console.log(atividadesFeitas)
 
 function concluirLicao(indice) {
   let atividades = JSON.parse(localStorage.getItem('atividades')) || []
-  let atividadesFeitas =
-    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
-  const [atividadeConcluida] = atividades.splice(indice, 1)
-
-  if (atividadeConcluida) {
-    atividadeConcluida.status = 'Concluído'
-    atividadesFeitas.push(atividadeConcluida)
+  if (atividades[indice]) {
+    atividades[indice].status = 'Concluído'
   }
-
   localStorage.setItem('atividades', JSON.stringify(atividades))
-  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
-
   renderizarAtividades()
-  atualizarVisorMateria()
+  atualizarVisor()
+  renderizarCardsMateria()
 }
 
 function atualizarVisorMateria() {
