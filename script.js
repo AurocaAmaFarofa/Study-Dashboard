@@ -19,15 +19,87 @@ function mostrarPagina(idPagina) {
 } //criado com a ajuda da IA para entender como funcionam SPA's na pratica
 
 const atividades = JSON.parse(localStorage.getItem('atividades')) || [] //const para puxar do localStorage as atividades e salvar
+const inputMateria = document.getElementById('popup-texto-materia')
+const btnAdicionarMateria = document.getElementById('btn-adicionar-mat')
 
-const materias = ['Direito Digital', 'Desenvolvimento Web', 'CyberSecurity']
+btnAdicionarMateria.addEventListener('click', () => {
+  let materias = JSON.parse(localStorage.getItem('materias')) || []
+  let textoDigitado = inputMateria.value.trim()
+  materias.push(textoDigitado)
+  localStorage.setItem('materias', JSON.stringify(materias))
+  console.log(materias)
+  renderizarCardsMateria()
+  renderizarListaMaterias()
+  atualizarVisorMat()
+  sumirPopup()
+  inputMateria.value = ''
+})
 
-const listaMaterias = document.getElementById('lista-materias')
+function renderizarCardsMateria() {
+  const materias = JSON.parse(localStorage.getItem('materias')) || []
+  const gridMaterias = document.getElementById('licoes-grid-mat')
+
+  gridMaterias.innerHTML = ''
+
+  materias.forEach((materia, indice) => {
+    gridMaterias.innerHTML += `
+      <div class="licao-container">
+        <h1 class="nome-materia pagina">Matéria</h1>
+        <div class="licao-info">
+          <h2 class="entrega">Atividades Concluidas : 0</h2>
+          <h2 class="status-licao">Atividades Pendentes : 0</h2>
+        </div>
+        <div class="porcentagem-licao"></div>
+        <nav class="edicao-licao btn-edicao-materia">
+          <button class="btn-edicao-licao hover-blue" onclick="excluirMateria(${indice})">Exluir</button>
+        </nav>
+      </div>
+    `
+  })
+}
+
+function excluirMateria(indice) {
+  let materias = localStorage.getItem('materias')
+  let listaMaterias = JSON.parse(materias) || []
+  listaMaterias.splice(indice, 1)
+  localStorage.setItem('materias', JSON.stringify(listaMaterias))
+  renderizarListaMaterias()
+  renderizarCardsMateria()
+  atualizarVisorMat()
+}
+
+function renderizarListaMaterias() {
+  const materias = JSON.parse(localStorage.getItem('materias')) || []
+  const listaMaterias = document.getElementById('lista-materias')
+
+  console.log('asdasd', materias)
+
+  listaMaterias.innerHTML = ''
+
+  materias.forEach((materia) => {
+    listaMaterias.innerHTML += `
+      <option value="${materia}">${materia}</option>
+    `
+  })
+  atualizarVisorMat()
+}
+
+function atualizarVisorMat() {
+  const numVisor = document.getElementById('num-materias')
+  const numeroMaterias = JSON.parse(localStorage.getItem('materias')) || []
+  const quantidadeMaterias = numeroMaterias.length
+  numVisor.innerText = quantidadeMaterias
+}
+
+atualizarVisorMat()
+renderizarListaMaterias()
+renderizarCardsMateria()
+
+//------------------------------------------------------------------------------------------//
+
 const licoesGrid = document.querySelector('.licoes-grid')
 
 const visor = document.getElementById('licoes-pendentes')
-
-//------------------------------------------------------------------------------------------//
 
 // função para atualizar o numero de lições pendentes
 function atualizarVisor() {
@@ -38,14 +110,6 @@ function atualizarVisor() {
 }
 
 atualizarVisor()
-
-function renderizarListaMaterias() {
-  materias.forEach((materia) => {
-    listaMaterias.innerHTML += `
-      <option value="${materia}">
-    `
-  })
-}
 
 function renderizarAtividades() {
   const atividades = JSON.parse(localStorage.getItem('atividades')) || []
@@ -120,10 +184,6 @@ if (licoesGrid) {
   renderizarAtividades()
 }
 
-if (listaMaterias) {
-  renderizarListaMaterias()
-}
-
 function excluirLicao(indice) {
   //pega o indice quando cria a atividade e exclui por ele
   let dadosLicoes = localStorage.getItem('atividades')
@@ -132,8 +192,6 @@ function excluirLicao(indice) {
   localStorage.setItem('atividades', JSON.stringify(listaLicoes))
   renderizarAtividades()
 }
-
-function excluirMateria() {}
 
 const divPopup = document.getElementById('popup-materia')
 

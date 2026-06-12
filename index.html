@@ -32,7 +32,9 @@
         <button class="btn-adicionar-materia" onclick="sumirPopup()">
           Cancelar
         </button>
-        <button class="btn-adicionar-materia">Criar</button>
+        <button class="btn-adicionar-materia" id="btn-adicionar-mat">
+          Criar
+        </button>
       </div>
     </div>
     <header>
@@ -69,7 +71,7 @@
         <div class="grid-1">
           <div class="grid-1-cards" id="grid-1-materias">
             <h1 class="titulo-card-1">Matérias</h1>
-            <p class="numero-card-1"><strong>0</strong></p>
+            <p class="numero-card-1" id="num-materias"><strong>0</strong></p>
           </div>
           <div class="grid-1-cards" id="grid-1-concluidas">
             <h1 class="titulo-card-1">Lições Feitas</h1>
@@ -105,7 +107,7 @@
         </section>
       </section>
 
-      <!-- ===== SEÇÃO LIÇÕES (De licao.html) ===== -->
+      <!-- ===== SEÇÃO LIÇÕES  ===== -->
       <section id="licoes">
         <h1 class="titulo">Adicionar Lição</h1>
         <section class="add-licao-container">
@@ -168,14 +170,14 @@
         </section>
       </section>
 
-      <!-- ===== SEÇÃO MATÉRIAS (De materias.html) ===== -->
+      <!-- ===== SEÇÃO MATÉRIAS ===== -->
       <section id="materias">
         <div class="licoes-container-materias">
           <section class="licoes-container pagina-materias">
             <div class="opc-licoes-materia">
               <h1 class="titulo-licoes">Matérias</h1>
             </div>
-            <div class="licoes-grid-materia">
+            <div class="licoes-grid-materia" id="licoes-grid-mat">
               <div class="licao-container">
                 <h1 class="nome-materia pagina">Matéria</h1>
                 <div class="licao-info">
@@ -184,7 +186,12 @@
                 </div>
                 <div class="porcentagem-licao"></div>
                 <nav class="edicao-licao btn-edicao-materia">
-                  <button class="btn-edicao-licao hover-blue">Exluir</button>
+                  <button
+                    class="btn-edicao-licao hover-blue"
+                    onclick="excluirMateria()"
+                  >
+                    Exluir
+                  </button>
                 </nav>
               </div>
             </div>
