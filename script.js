@@ -1,61 +1,61 @@
-const divPopup = document.getElementById('popup-materia')
-const divPopupAtividade = document.getElementById('popup-atividade-nova')
-const visorFeitas = document.getElementById('licoes-feitas')
+const divPopup = document.getElementById("popup-materia");
+const divPopupAtividade = document.getElementById("popup-atividade-nova");
+const visorFeitas = document.getElementById("licoes-feitas");
 
 function mostrarPagina(idPagina) {
-  document.querySelectorAll('main > section').forEach((secao) => {
-    secao.classList.remove('pagina-ativa')
-  })
+  document.querySelectorAll("main > section").forEach((secao) => {
+    secao.classList.remove("pagina-ativa");
+  });
 
-  const paginaAtiva = document.getElementById(idPagina)
-  if (paginaAtiva) paginaAtiva.classList.add('pagina-ativa')
+  const paginaAtiva = document.getElementById(idPagina);
+  if (paginaAtiva) paginaAtiva.classList.add("pagina-ativa");
 
-  document.querySelectorAll('.nav-link').forEach((link) => {
-    link.classList.remove('ativo')
-  })
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.classList.remove("ativo");
+  });
 
   const linkAtivo = document.querySelector(
     `.nav-link[data-pagina="${idPagina}"]`,
-  )
-  if (linkAtivo) linkAtivo.classList.add('ativo')
+  );
+  if (linkAtivo) linkAtivo.classList.add("ativo");
 
-  window.scrollTo(0, 0)
+  window.scrollTo(0, 0);
 } //criado com a ajuda da IA para entender como funcionam SPA's na pratica
 
-const atividades = JSON.parse(localStorage.getItem('atividades')) || [] //const para puxar do localStorage as atividades e salvar
-const inputMateria = document.getElementById('popup-texto-materia')
-const btnAdicionarMateria = document.getElementById('btn-adicionar-mat')
+const atividades = JSON.parse(localStorage.getItem("atividades")) || []; //const para puxar do localStorage as atividades e salvar
+const inputMateria = document.getElementById("popup-texto-materia");
+const btnAdicionarMateria = document.getElementById("btn-adicionar-mat");
 
-btnAdicionarMateria.addEventListener('click', () => {
-  let materias = JSON.parse(localStorage.getItem('materias')) || []
-  let textoDigitado = inputMateria.value.trim()
-  materias.push(textoDigitado)
-  localStorage.setItem('materias', JSON.stringify(materias))
-  console.log(materias)
-  renderizarCardsMateria()
-  renderizarListaMaterias()
-  atualizarVisorMat()
-  sumirPopup()
-  inputMateria.value = ''
-})
+btnAdicionarMateria.addEventListener("click", () => {
+  let materias = JSON.parse(localStorage.getItem("materias")) || [];
+  let textoDigitado = inputMateria.value.trim();
+  materias.push(textoDigitado);
+  localStorage.setItem("materias", JSON.stringify(materias));
+  console.log(materias);
+  renderizarCardsMateria();
+  renderizarListaMaterias();
+  atualizarVisorMat();
+  sumirPopup();
+  inputMateria.value = "";
+});
 
 function renderizarCardsMateria() {
-  const materias = JSON.parse(localStorage.getItem('materias')) || []
+  const materias = JSON.parse(localStorage.getItem("materias")) || [];
   const atividadesPendentes =
-    JSON.parse(localStorage.getItem('atividades')) || []
+    JSON.parse(localStorage.getItem("atividades")) || [];
   const atividadesConcluidas =
-    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
+    JSON.parse(localStorage.getItem("atividadesFeitas")) || [];
 
-  const gridMaterias = document.getElementById('licoes-grid-mat')
-  gridMaterias.innerHTML = ''
+  const gridMaterias = document.getElementById("licoes-grid-mat");
+  gridMaterias.innerHTML = "";
 
   materias.forEach((materia, indice) => {
     const qtdPendentes = atividadesPendentes.filter(
       (ativ) => ativ.materia === materia,
-    ).length
+    ).length;
     const qtdFeitas = atividadesConcluidas.filter(
       (ativ) => ativ.materia === materia,
-    ).length
+    ).length;
 
     gridMaterias.innerHTML += `
       <div class="licao-container">
@@ -69,92 +69,92 @@ function renderizarCardsMateria() {
           <button class="btn-edicao-licao hover-blue" onclick="excluirMateria(${indice})">Exluir</button>
         </nav>
       </div>
-    `
-  })
+    `;
+  });
 }
 
 function excluirMateria(indice) {
-  let materias = localStorage.getItem('materias')
-  let listaMaterias = JSON.parse(materias) || []
-  listaMaterias.splice(indice, 1)
-  localStorage.setItem('materias', JSON.stringify(listaMaterias))
-  renderizarListaMaterias()
-  renderizarCardsMateria()
-  atualizarVisorMat()
+  let materias = localStorage.getItem("materias");
+  let listaMaterias = JSON.parse(materias) || [];
+  listaMaterias.splice(indice, 1);
+  localStorage.setItem("materias", JSON.stringify(listaMaterias));
+  renderizarListaMaterias();
+  renderizarCardsMateria();
+  atualizarVisorMat();
 }
 
 function renderizarListaMaterias() {
-  const materias = JSON.parse(localStorage.getItem('materias')) || []
-  const listaMaterias = document.getElementById('lista-materias')
+  const materias = JSON.parse(localStorage.getItem("materias")) || [];
+  const listaMaterias = document.getElementById("lista-materias");
 
-  console.log('asdasd', materias)
+  console.log("asdasd", materias);
 
-  listaMaterias.innerHTML = ''
+  listaMaterias.innerHTML = "";
 
   materias.forEach((materia) => {
     listaMaterias.innerHTML += `
       <option value="${materia}">${materia}</option>
-    `
-  })
-  atualizarVisorMat()
+    `;
+  });
+  atualizarVisorMat();
 }
 
 function atualizarVisorMat() {
-  const numVisor = document.getElementById('num-materias')
-  const numeroMaterias = JSON.parse(localStorage.getItem('materias')) || []
-  const quantidadeMaterias = numeroMaterias.length
-  numVisor.innerText = quantidadeMaterias
+  const numVisor = document.getElementById("num-materias");
+  const numeroMaterias = JSON.parse(localStorage.getItem("materias")) || [];
+  const quantidadeMaterias = numeroMaterias.length;
+  numVisor.innerText = quantidadeMaterias;
 }
 
-atualizarVisorMat()
-renderizarListaMaterias()
-renderizarCardsMateria()
+atualizarVisorMat();
+renderizarListaMaterias();
+renderizarCardsMateria();
 
 //------------------------------------------------------------------------------------------//
 
-const licoesGrid = document.querySelector('.licoes-grid')
+const licoesGrid = document.querySelector(".licoes-grid");
 
-const visor = document.getElementById('licoes-pendentes')
+const visor = document.getElementById("licoes-pendentes");
 
 // função para atualizar o numero de lições pendentes
 function atualizarVisor() {
-  const atividades = localStorage.getItem('atividades') //puxa do localStorage
-  const listaAtividades = JSON.parse(atividades) || [] //transforma em array
-  const quantidadeAtividades = listaAtividades.length //puxa tamanho do array
-  visor.innerText = quantidadeAtividades
+  const atividades = localStorage.getItem("atividades"); //puxa do localStorage
+  const listaAtividades = JSON.parse(atividades) || []; //transforma em array
+  const quantidadeAtividades = listaAtividades.length; //puxa tamanho do array
+  visor.innerText = quantidadeAtividades;
 }
 
-atualizarVisor()
+atualizarVisor();
 
 function renderizarAtividades() {
-  const atividades = JSON.parse(localStorage.getItem('atividades')) || []
+  const atividades = JSON.parse(localStorage.getItem("atividades")) || [];
 
-  licoesGrid.innerHTML = ''
+  licoesGrid.innerHTML = "";
 
   atividades.forEach((atividade, indice) => {
     //cria o indice pra dai saber qual atividade é qual
 
-    let classePrioridade = ''
+    let classePrioridade = "";
 
-    if (atividade.prioridade === 'Alta') {
-      classePrioridade = 'txt-prioridade-alta'
+    if (atividade.prioridade === "Alta") {
+      classePrioridade = "txt-prioridade-alta";
     } else if (
-      atividade.prioridade === 'Média' ||
-      atividade.prioridade === 'Media'
+      atividade.prioridade === "Média" ||
+      atividade.prioridade === "Media"
     ) {
-      classePrioridade = 'txt-prioridade-media'
+      classePrioridade = "txt-prioridade-media";
     } else {
-      classePrioridade = 'txt-prioridade-baixa'
+      classePrioridade = "txt-prioridade-baixa";
     }
-    console.log(indice)
+
+    console.log(indice);
     licoesGrid.innerHTML += `
 
       <div class="licao-container">
         <h1 class="nome-materia">${atividade.materia}</h1>
         <div class="licao-info">
         <h2 class="entrega">Entrega: ${atividade.entrega}</h2>
-        <h2 class="dias-restantes">Faltam <strong>${atividade.dias} </strong>dias</h2>
-        <h2 class="prioridade ${classePrioridade}">Prioridade: <strong class="${classePrioridade}">${atividade.prioridade}</strong></h2>
+        <h2 class="prioridade">Prioridade: <strong class="${classePrioridade}">${atividade.prioridade}</strong></h2>
         <h2 class="status-licao">Status: <strong>${atividade.status}</strong></h2>
         <h2 class="descrição">${atividade.descricao}</h2>
         </div>
@@ -165,136 +165,140 @@ function renderizarAtividades() {
         <button class="btn-edicao-licao" onclick="excluirLicao(${indice})">Exluir</button>
         </nav>
       </div>
-    ` //innerHTML cria dentro da div que a gente puxou por const tatata = document.blabla
-  })
+    `; //innerHTML cria dentro da div que a gente puxou por const tatata = document.blabla
+  });
 
-  atualizarVisor()
-  atualizarVisorMateria()
+  atualizarVisor();
+  atualizarVisorMateria();
 }
 
-const btnAdicionarLicao = document.getElementById('btn-adicionar-licao')
+const btnAdicionarLicao = document.getElementById("btn-adicionar-licao");
 
-btnAdicionarLicao.addEventListener('click', () => {
+btnAdicionarLicao.addEventListener("click", () => {
   const novaAtividade = {
-    materia: document.getElementById('materia').value,
-    entrega: document.getElementById('data-entrega').value,
-    prioridade: document.getElementById('prioridade').value,
-    status: document.getElementById('status').value,
-    descricao: document.getElementById('descricao').value,
-  }
-  console.log(novaAtividade)
+    materia: document.getElementById("materia").value,
+    entrega: document.getElementById("data-entrega").value,
+    prioridade: document.getElementById("prioridade").value,
+    status: document.getElementById("status").value,
+    descricao: document.getElementById("descricao").value,
+  };
+  console.log(novaAtividade);
 
-  let atividades = JSON.parse(localStorage.getItem('atividades')) || []
+  let atividades = JSON.parse(localStorage.getItem("atividades")) || [];
 
-  atividades.push(novaAtividade)
+  atividades.push(novaAtividade);
 
-  localStorage.setItem('atividades', JSON.stringify(atividades))
+  localStorage.setItem("atividades", JSON.stringify(atividades));
 
-  document.getElementById('materia').value = ''
-  document.getElementById('data-entrega').value = ''
-  document.getElementById('prioridade').value = ''
-  document.getElementById('status').value = ''
-  document.getElementById('descricao').value = ''
+  document.getElementById("materia").value = "";
+  document.getElementById("data-entrega").value = "";
+  document.getElementById("prioridade").value = "";
+  document.getElementById("status").value = "";
+  document.getElementById("descricao").value = "";
 
-  renderizarAtividades()
+  renderizarAtividades();
 
-  mostrarPagina('home')
+  mostrarPagina("home");
 
-  console.log(novaAtividade)
+  console.log(novaAtividade);
 
-  renderizarAtividades()
+  renderizarAtividades();
 
-  sumirPopupAtividade()
-})
+  sumirPopupAtividade();
+});
 
-document.addEventListener('DOMContentLoaded', () => {
-  mostrarPagina('home')
-})
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarPagina("home");
+});
 
 if (licoesGrid) {
-  renderizarAtividades()
+  renderizarAtividades();
 }
 
 function excluirLicao(indice) {
   //pega o indice quando cria a atividade e exclui por ele
-  let dadosLicoes = localStorage.getItem('atividades')
-  let listaLicoes = JSON.parse(dadosLicoes) || []
-  listaLicoes.splice(indice, 1)
-  localStorage.setItem('atividades', JSON.stringify(listaLicoes))
-  renderizarAtividades()
-  renderizarCardsMateria()
+  let dadosLicoes = localStorage.getItem("atividades");
+  let listaLicoes = JSON.parse(dadosLicoes) || [];
+  listaLicoes.splice(indice, 1);
+  localStorage.setItem("atividades", JSON.stringify(listaLicoes));
+  renderizarAtividades();
+  renderizarCardsMateria();
 }
 
 function mostrarPopup() {
-  divPopup.classList.remove('saida')
-  divPopup.classList.remove('escondido')
+  divPopup.classList.remove("saida");
+  divPopup.classList.remove("escondido");
 }
 
 function sumirPopup() {
-  divPopup.classList.add('saida')
+  divPopup.classList.add("saida");
   setTimeout(function () {
-    divPopup.classList.add('escondido')
-    divPopup.classList.remove('saida')
-  }, 250)
+    divPopup.classList.add("escondido");
+    divPopup.classList.remove("saida");
+  }, 250);
 }
 
 function mostrarPopupAtividade() {
-  divPopupAtividade.classList.remove('saida')
-  divPopupAtividade.classList.remove('escondido')
+  divPopupAtividade.classList.remove("saida");
+  divPopupAtividade.classList.remove("escondido");
 }
 
 function sumirPopupAtividade() {
-  divPopupAtividade.classList.add('saida')
+  divPopupAtividade.classList.add("saida");
   setTimeout(function () {
-    divPopupAtividade.classList.add('escondido')
-    divPopupAtividade.classList.remove('saida')
-  }, 250)
+    divPopupAtividade.classList.add("escondido");
+    divPopupAtividade.classList.remove("saida");
+  }, 250);
 }
 
 //------------------------------------------------------------------------------------------//
 
-const concluidasGrid = document.getElementById('grid-1-concluidas')
-const btnFinalizarLicao = document.getElementById('btn-concluir-licao')
+const concluidasGrid = document.getElementById("grid-1-concluidas");
+const btnFinalizarLicao = document.getElementById("btn-concluir-licao");
 let atividadesFeitas =
-  JSON.parse(localStorage.getItem('atividadesFeitas')) || []
+  JSON.parse(localStorage.getItem("atividadesFeitas")) || [];
 
-console.log(atividadesFeitas)
+console.log(atividadesFeitas);
 
 function concluirLicao(indice) {
-  let atividades = JSON.parse(localStorage.getItem('atividades')) || []
+  let atividades = JSON.parse(localStorage.getItem("atividades")) || [];
   let atividadesFeitas =
-    JSON.parse(localStorage.getItem('atividadesFeitas')) || []
-  const [atividadeConcluida] = atividades.splice(indice, 1)
+    JSON.parse(localStorage.getItem("atividadesFeitas")) || [];
+  const [atividadeConcluida] = atividades.splice(indice, 1);
 
   if (atividadeConcluida) {
-    atividadeConcluida.status = 'Concluído'
-    atividadesFeitas.push(atividadeConcluida)
+    atividadeConcluida.status = "Concluído";
+    atividadesFeitas.push(atividadeConcluida);
   }
-  localStorage.setItem('atividades', JSON.stringify(atividades))
-  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
-  renderizarAtividades()
-  atualizarVisor()
-  atualizarVisorMateria()
-  renderizarCardsMateria()
+  localStorage.setItem("atividades", JSON.stringify(atividades));
+  localStorage.setItem("atividadesFeitas", JSON.stringify(atividadesFeitas));
+  renderizarAtividades();
+  atualizarVisor();
+  atualizarVisorMateria();
+  renderizarCardsMateria();
 }
 
 function atualizarVisorMateria() {
-  const atividadesFeitas = localStorage.getItem('atividadesFeitas')
-  const listaAtividadesFetas = JSON.parse(atividadesFeitas) || []
-  const quantidadeAtividadesFeitas = listaAtividadesFetas.length
-  visorFeitas.innerText = quantidadeAtividadesFeitas
+  const atividadesFeitas = localStorage.getItem("atividadesFeitas");
+  const listaAtividadesFetas = JSON.parse(atividadesFeitas) || [];
+  const quantidadeAtividadesFeitas = listaAtividadesFetas.length;
+  visorFeitas.innerText = quantidadeAtividadesFeitas;
 }
 
-atualizarVisorMateria()
+atualizarVisorMateria();
 
 //---------------------------Função temporaria, apagar depois------------------------------------//
 
-concluidasGrid.addEventListener('click', resetarAtividadesFeitas)
+concluidasGrid.addEventListener("click", resetarAtividadesFeitas);
 
 function resetarAtividadesFeitas() {
-  atividadesFeitas = []
-  localStorage.setItem('atividadesFeitas', JSON.stringify(atividadesFeitas))
-  atualizarVisorMateria()
+  atividadesFeitas = [];
+  localStorage.setItem("atividadesFeitas", JSON.stringify(atividadesFeitas));
+  atualizarVisorMateria();
 }
 
 //------------------------------------------------------------------------------------------//
+
+function ativarMenu() {
+  
+}

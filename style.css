@@ -254,9 +254,23 @@ header h1 {
   max-width: 100px;
 }
 
+header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
 header nav a {
-  display: none;
   transition: all 0.2s;
+  display: flex;
+  background-color: var(--transparent);
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: var(--light-text-color);
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
 }
 
 header nav a:hover {
@@ -383,7 +397,7 @@ main {
 }
 
 .prioridade {
-  color: var(--red);
+  color: var(--light-text-color);
 }
 
 .licoes-grid {
@@ -484,19 +498,19 @@ main {
   padding: 10px;
 }
 
-.input-materia[type='date']::placeholder {
+.input-materia[type="date"]::placeholder {
   color: var(--transparent-border);
 }
 
-.input-materia[type='date']::-webkit-datetime-edit-text,
-.input-materia[type='date']::-webkit-datetime-edit-month-field,
-.input-materia[type='date']::-webkit-datetime-edit-day-field,
-.input-materia[type='date']::-webkit-datetime-edit-year-field {
+.input-materia[type="date"]::-webkit-datetime-edit-text,
+.input-materia[type="date"]::-webkit-datetime-edit-month-field,
+.input-materia[type="date"]::-webkit-datetime-edit-day-field,
+.input-materia[type="date"]::-webkit-datetime-edit-year-field {
   color: var(--light-text-color);
   font-style: italic;
 }
 
-.input-materia[type='date']::-webkit-calendar-picker-indicator {
+.input-materia[type="date"]::-webkit-calendar-picker-indicator {
   background-color: transparent;
   filter: invert(1);
   cursor: pointer;
@@ -504,7 +518,7 @@ main {
   transition: opacity 0.3s;
 }
 
-.input-materia[type='date']::-webkit-calendar-picker-indicator:hover {
+.input-materia[type="date"]::-webkit-calendar-picker-indicator:hover {
   opacity: 1;
 }
 
@@ -539,6 +553,8 @@ main {
 
   header nav {
     display: flex;
+    align-items: flex-start;
+    flex-direction: row;
     gap: 10px;
     justify-content: space-around;
   }
